@@ -1,0 +1,148 @@
+@media (max-width: 968px) {
+    .nav-container {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        transform: none;
+        display: none;
+        padding-left: 1rem;
+        min-width: 100%;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .nav-container.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav-links a {
+        justify-content: center;
+    }
+
+    .dropdown-content {
+        text-align: center;
+    }
+
+    .dropdown-content a {
+        justify-content: center;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 80%;
+        margin: 0 auto;
+        gap: 0.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.85rem;
+        margin: 0 auto;
+        min-height: 28px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    .hamburger {
+        order: 3;
+    }
+
+    .logo img {
+        height: 32px;
+    }
+
+    /* Hero Section  */
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-content {
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    /* Hero Section Ends  */
+    /* About us Section  */
+    
+
+    /* About us Section Ends  */
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.25rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        display: block;
+        text-align: center;
+    }
+
+    /* About us Section  */
+    
+
+    /* About Us Ends  */
+}
+
