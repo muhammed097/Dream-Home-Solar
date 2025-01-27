@@ -231,9 +231,10 @@ nav {
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    /* display: flex; */
+    /* align-items: center; */
+    /* gap: 0.5rem; */
+    text-transform: uppercase;
 }
 
 .hero-title {
