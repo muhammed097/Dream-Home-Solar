@@ -192,6 +192,9 @@ nav {
     overflow: hidden;
     display: flex;
     align-items: center;
+    background-image: url('assets/images/Hero.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .video-overlay {
@@ -214,6 +217,12 @@ nav {
     height: auto;
     z-index: 0;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.background-video.loaded {
+    opacity: 1;
 }
 
 .hero-content {

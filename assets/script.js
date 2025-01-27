@@ -32,3 +32,37 @@ document.querySelectorAll('.nav-links a:not(.dropdown > a)').forEach(link => {
         navContainer.classList.remove('active');
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.background-video');
+    const source = video.querySelector('source');
+    
+    // Load video only when it's in viewport
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Set the actual video source
+                source.src = source.dataset.src;
+                video.load();
+                
+                video.addEventListener('loadeddata', () => {
+                    video.classList.add('loaded');
+                    video.play();
+                });
+                
+                observer.unobserve(video);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    observer.observe(video);
+});
+
+// Fallback for browsers that don't support IntersectionObserver
+if (!('IntersectionObserver' in window)) {
+    const video = document.querySelector('.background-video');
+    const source = video.querySelector('source');
+    source.src = source.dataset.src;
+    video.load();
+    video.play();
+}
