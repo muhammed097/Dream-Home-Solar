@@ -32,3 +32,22 @@ document.querySelectorAll('.nav-links a:not(.dropdown > a)').forEach(link => {
         navContainer.classList.remove('active');
     });
 });
+
+// Faq Sections 
+
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all other items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        // Toggle current item
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    });
+});

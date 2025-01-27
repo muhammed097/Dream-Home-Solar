@@ -115,9 +115,204 @@
 
     /* Hero Section Ends  */
     /* About us Section  */
-    
+    .about-container {
+        flex-direction: column;
+        padding: 0 1.5rem;
+        gap: 3rem;
+    }
+
+    .company-title {
+        font-size: 2.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 
     /* About us Section Ends  */
+    /* our Section  */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .services-title {
+        font-size: 2.5rem;
+    }
+    /* Our Section Ends  */
+
+    /* Installation Starts  */
+    .steps-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+
+    .steps-container::before {
+        display: none;
+    }
+
+    .process-title {
+        font-size: 2.5rem;
+    }
+
+    .step-image-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+
+    /* Installation Ends  */
+
+    /* Calculation  */
+    .calculator-container {
+        flex-direction: column;
+        margin: 0 1rem;
+    }
+
+    .calculator-image {
+        height: 300px;
+    }
+
+    .calculator-content {
+        padding: 3rem 2rem;
+    }
+
+    .calculator-title {
+        font-size: 2.5rem;
+    }
+
+    .calculator-text {
+        max-width: 100%;
+    }
+
+    /* Calculation Ends  */
+}
+
+@media (max-width: 768px) {
+    .brand-section {
+        padding: 40px 0;
+    }
+
+    .brand-container {
+        padding: 0 1rem;
+    }
+
+    .brand-title {
+        font-size: 2rem;
+    }
+
+    .logo-slide {
+        width: 150px;
+    }
+
+    .logo-slide img {
+        max-width: 120px;
+    }
+
+    .logo-slide-track {
+        width: calc(150px * 12);
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-150px * 6));
+        }
+    }
+}
+
+
+
+@media (max-width: 576px) {
+
+    /* Our Section  */
+    
+    .services {
+        padding: 60px 0;
+    }
+
+    .services-container {
+        padding: 0 1rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-title {
+        font-size: 2rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-title {
+        font-size: 1.25rem;
+    }
+
+    /* Our Section Ends  */
+    /* Installation Starts  */
+    .work-process {
+        padding: 60px 0;
+    }
+
+    .process-container {
+        padding: 0 1rem;
+    }
+
+    .steps-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .process-title {
+        font-size: 2rem;
+    }
+
+    .step-image-wrapper {
+        width: 160px;
+        height: 160px;
+    }
+
+    .step-title {
+        font-size: 1.25rem;
+    }
+
+    /* Installation Ends  */
+    /* Calculation  */
+    .calculator-section {
+        margin: 2rem 0;
+    }
+
+    .calculator-container {
+        margin: 0 1rem;
+    }
+
+    .calculator-image {
+        height: 250px;
+    }
+
+    .calculator-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .calculator-title {
+        font-size: 2rem;
+    }
+
+    .calculator-description {
+        font-size: 1rem;
+    }
+
+    .calculator-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Calculation Ends  */
 }
 
 @media (max-width: 480px) {
@@ -141,7 +336,25 @@
     }
 
     /* About us Section  */
-    
+    .about-company {
+        padding: 40px 0;
+    }
+
+    .company-title {
+        font-size: 2rem;
+    }
+
+    .company-description {
+        font-size: 1rem;
+    }
+
+    .feature-text {
+        font-size: 1rem;
+    }
+
+    .about-container {
+        padding: 0 1rem;
+    }
 
     /* About Us Ends  */
 }
