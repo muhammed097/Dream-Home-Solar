@@ -78,7 +78,7 @@ nav {
     gap: 4px;
 }
 
-.dropdown > a::after {
+/* .dropdown > a::after {
     content: '';
     display: inline-block;
     width: 0;
@@ -91,13 +91,13 @@ nav {
 
 .dropdown:hover > a::after {
     transform: rotate(180deg);
-}
+} */
 
 .nav-links a:hover {
     color: var(--color-primary);
 }
 
-.dropdown {
+/* .dropdown {
     position: relative;
 }
 
@@ -131,7 +131,7 @@ nav {
 .dropdown-content a:hover {
     background-color: #f8f8f8;
     color: var(--color-primary);
-}
+} */
 
 
 .buttons {
@@ -873,3 +873,147 @@ nav {
 }
 
 /* Our Brand Ends  */
+
+/* Footer Section  */
+.footer {
+    background-color: var(--color-secondary);
+    color: #fff;
+    padding: 80px 0 0;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+/* Company Info Styles */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo img {
+    height: 40px;
+    width: auto;
+}
+
+.footer-logo span {
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.footer-description {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+/* Footer Links Styles */
+.footer-col h3 {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+/* Contact Info Styles */
+.contact-info p {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+.contact-info i {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+}
+
+/* Bottom Bar Styles */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ccc;
+}
+
+.footer-bottom a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-bottom-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: var(--color-primary);
+}
+
+/* Footer Section Ends  */
