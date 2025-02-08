@@ -1,3 +1,13 @@
+@media (max-width: 1200px) {
+    .contact-info-grid {
+        justify-content: space-around;
+    }
+    
+    .contact-item {
+        min-width: 220px;
+    }
+}
+
 @media (max-width: 1024px) {
 
     /* Our Value  */
@@ -207,6 +217,7 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }
+    /* Footer Section Ends  */
 
     /* About Us page Content  */
     .about-content-container {
@@ -227,11 +238,19 @@
 
     /* Gallery Ends  */
 
+    /* Service Card  */
+    .interior-container {
+        flex-direction: column;
+        padding: 0 1.5rem;
+        gap: 3rem;
+    }
+
+    .interior-title {
+        font-size: 2rem;
+    }
+    /* Service Ends  */
+
 }
-
-/* Footer Section Ends  */
-
-
 
 /* About Us Page Content Ends  */
 
@@ -343,6 +362,11 @@
     }
 
     /* Call Now Ends */
+    /* Get in touch  */
+    .contact-item {
+        min-width: 280px;
+    }
+    /* Get in touch end  */
 
 }
 
@@ -589,6 +613,46 @@
     }
 
     /* Call Now Ends  */
+
+    /* Service Card  */
+    .interior-works {
+        padding: 60px 0;
+    }
+
+    .interior-title {
+        font-size: 1.75rem;
+    }
+
+    .interior-description p {
+        font-size: 1rem;
+    }
+
+    .interior-cta {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Service Card End  */
+    /* Get in touch  */
+    .contact-container {
+        padding: 0 1rem;
+    }
+    
+    .contact-info-grid {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .contact-item {
+        width: 100%;
+    }
+    
+    .contact-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Get in touch ends  */
 
 
 }
