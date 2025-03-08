@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Home Solar</title>
+    <link rel="icon" type="image/png" href="assets/images/favi.png">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="assets/images/favi.png">
+    <link rel="apple-touch-icon" href="assets/images/favi.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/costcalculator.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/mobile.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="assets/images/dreamhomesolar.webp" alt="Sola Logo">
+            <span class="logo-text">DREAM HOME SOLAR SOLUTIONS</span>
+        </a>
+
+        <button class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-container">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" style="color: #FBD343;">HOME</a></li>
+                    <li><a href="aboutus.html">ABOUT US</a></li>
+                    <li><a href="ourservices.html">OUR SERVICES</a></li>
+                    <li><a href="#">PACKAGES</a></li>
+                    <li><a href="#">COST CALCULATOR</a></li>
+                    <li><a href="#">SERVICE REQUEST</a></li>
+                    <!-- <li class="dropdown">
+                        <a href="#">REQUIREMENTS</a>
+                        <div class="dropdown-content">
+                            <a href="#">ADDITIONAL REQUIREMENTS</a>
+                            <a href="#">BASIC REQUIREMENTS</a>
+                        </div> -->
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="buttons">
+                <button class="btn btn-pro">LOGIN</button>
+                <button class="btn btn-quote">PAY NOW</button>
+            </div>
+        </div>
+    </header>
+    <!-- Services Header Section -->
+    <section class="page-header">
+        <div class="page-header-overlay"></div>
+        <div class="page-header-content">
+            <h1 class="page-title">Cost Calculator</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="separator">></span>
+                <span class="current-page">Cost Calculator</span>
+            </div>
+        </div>
+    </section>
+    <!-- Services Header Ends  -->
+    <!-- Calculator Intro Section -->
+<section class="calculator-intro">
+    <div class="calculator-intro-container">
+        <div class="intro-content">
+            <span class="intro-label">CALCULATE YOUR NEEDS</span>
+            <h2 class="intro-title">Find the Perfect <span>Solar Solution</span> for Your Needs</h2>
+            <p class="intro-description">
+                Use our powerful calculators to determine the ideal solar setup for your home or business. 
+                Make informed decisions based on accurate estimates tailored to your specific requirements.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- Calculator Intro Ends --> 
+<!-- Simple Calculator Cards -->
+ <div class="container">
+<div class="cards-grid">
+    <!-- Solar Battery Calculator Card -->
+    <div class="calc-card" id="battery-card">
+        <div class="calc-icon">
+            <i class="fas fa-battery-full"></i>
+        </div>
+        <h3 class="calc-title">Solar Battery Calculator</h3>
+        <p class="calc-description">Determine the right battery capacity based on your power requirements, backup duration, and budget constraints.</p>
+    </div>
+
+    <!-- Solar Panel Load Calculator Card -->
+    <div class="calc-card" id="panel-card">
+        <div class="calc-icon">
+            <i class="fas fa-solar-panel"></i>
+        </div>
+        <h3 class="calc-title">Solar Panel Load Calculator</h3>
+        <p class="calc-description">Find the perfect solar system size based on your electricity usage, location, and roof characteristics.</p>
+    </div>
+</div>
+
+<!-- Solar Battery Calculator Section -->
+<div id="battery-calculator" class="calculator-section">
+    <div class="calculator-card">
+        <div class="card-header">
+            <h3>Solar Battery Calculator</h3>
+        </div>
+        <div class="card-content">
+            <h4 class="calculator-title">Calculate Your Battery Capacity Requirements</h4>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="daily-consumption">Daily Energy Consumption (kWh)</label>
+                    <input type="number" id="daily-consumption" class="form-control" placeholder="e.g., 15">
+                </div>
+                
+                <div class="form-group">
+                    <label for="backup-days">Backup Duration (Days)</label>
+                    <input type="number" id="backup-days" class="form-control" placeholder="e.g., 2">
+                </div>
+                
+                <div class="form-group">
+                    <label for="battery-type">Battery Type</label>
+                    <select id="battery-type" class="form-control">
+                        <option value="">Select Battery Type</option>
+                        <option value="lithium">Lithium-ion</option>
+                        <option value="lead">Lead-acid</option>
+                        <option value="gel">Gel</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="discharge-depth">Depth of Discharge (%)</label>
+                    <input type="number" id="discharge-depth" class="form-control" placeholder="e.g., 80">
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button id="back-to-cards-battery" class="back-btn">Back to Calculators</button>
+                <button id="calculate-battery" class="btn">Calculate</button>
+            </div>
+            
+            <div id="battery-results" class="results">
+                <h3 class="results-title">Your Battery Requirements</h3>
+                
+                <div class="results-grid">
+                    <div class="result-card result-card-capacity">
+                        <p class="result-label"><i class="fas fa-battery-full"></i> RECOMMENDED BATTERY CAPACITY</p>
+                        <p id="battery-capacity" class="result-value">0.00 kWh</p>
+                    </div>
+                    
+                    <div class="result-card result-card-saving-kwh">
+                        <p class="result-label"><i class="fas fa-bolt"></i> CAPACITY IN AMP-HOURS</p>
+                        <p id="battery-ah" class="result-value">0.00 Ah</p>
+                    </div>
+                    
+                    <div class="result-card result-card-saving-rs">
+                        <p class="result-label"><i class="fas fa-rupee-sign"></i> ESTIMATED COST</p>
+                        <p id="battery-cost" class="result-value">₹0.00</p>
+                    </div>
+                    
+                    <div class="result-card result-card-time">
+                        <p class="result-label"><i class="fas fa-history"></i> BATTERY LIFESPAN</p>
+                        <p id="battery-life" class="result-value">0 Cycles</p>
+                    </div>
+                </div>
+                
+                <div class="disclaimer">
+                    <p>
+                        <strong>Note:</strong> These calculations provide estimates based on your inputs. 
+                        Actual battery requirements may vary based on factors such as usage patterns, temperature, 
+                        and inverter efficiency. Contact our team for a personalized assessment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Solar Panel Calculator Section -->
+<div id="panel-calculator" class="calculator-section">
+    <div class="calculator-card">
+        <div class="card-header">
+            <h3>Solar Panel Load Calculator</h3>
+        </div>
+        <div class="card-content">
+            <h4 class="calculator-title">Calculate Your Ideal Solar Panel System</h4>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="state">Select Your Location</label>
+                    <select id="state" class="form-control">
+                        <option value="">Select Your State</option>
+                        <option value="5.8">Tamil Nadu</option>
+                        <option value="5.1">Andaman and Nicobar</option>
+                        <option value="7.3">Andhra Pradesh</option>
+                        <option value="4.9">Bihar</option>
+                        <option value="2.2">Chhattisgarh</option>
+                        <option value="6.5">Gujarat</option>
+                        <option value="5.6">Haryana</option>
+                        <option value="4">Himachal Pradesh</option>
+                        <option value="6.2">Karnataka</option>
+                        <option value="7.5">Kerala</option>
+                        <option value="6.8">Madhya Pradesh</option>
+                        <option value="8.8">Maharashtra</option>
+                        <option value="6.4">Delhi</option>
+                        <option value="5.3">Odisha</option>
+                        <option value="5.8">Punjab</option>
+                        <option value="5.3">Rajasthan</option>
+                        <option value="3.8">Uttar Pradesh</option>
+                        <option value="8">West Bengal</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Property Type</label>
+                    <select id="category" class="form-control">
+                        <option value="">Select Property Type</option>
+                        <option value="2">Residential</option>
+                        <option value="3">Commercial</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="monthlyBill">Monthly Electricity Bill (₹)</label>
+                    <input 
+                        type="number" 
+                        id="monthlyBill" 
+                        class="form-control"
+                        placeholder="Enter your average bill amount"
+                    />
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button id="back-to-cards-panel" class="back-btn">Back to Calculators</button>
+                <button id="calculate-panel" class="btn">Calculate</button>
+            </div>
+            
+            <div id="panel-results" class="results">
+                <h3 class="results-title">Your Solar Panel System Requirements</h3>
+                
+                <div class="results-grid">
+                    <div class="result-card result-card-capacity">
+                        <p class="result-label"><i class="fas fa-solar-panel"></i> RECOMMENDED CAPACITY</p>
+                        <p id="suggestedCapacity" class="result-value">0.00 kW</p>
+                    </div>
+                    
+                    <div class="result-card result-card-saving-kwh">
+                        <p class="result-label"><i class="fas fa-bolt"></i> MONTHLY GENERATION</p>
+                        <p id="monthlySavingKwh" class="result-value">0.00 kWh</p>
+                    </div>
+                    
+                    <div class="result-card result-card-saving-rs">
+                        <p class="result-label"><i class="fas fa-rupee-sign"></i> MONTHLY SAVINGS</p>
+                        <p id="monthlySavingRs" class="result-value">₹0.00</p>
+                    </div>
+                    
+                    <div class="result-card result-card-space">
+                        <p class="result-label"><i class="fas fa-vector-square"></i> ROOF SPACE NEEDED</p>
+                        <p id="requiredSpace" class="result-value">0.00 sq.ft</p>
+                    </div>
+                    
+                    <div class="result-card result-card-co2">
+                        <p class="result-label"><i class="fas fa-leaf"></i> ENVIRONMENTAL IMPACT</p>
+                        <p id="co2Reduction" class="result-value">0.00 Ton CO₂ Reduction Per Year</p>
+                    </div>
+                </div>
+                
+                <div class="disclaimer">
+                    <p>
+                        <strong>Note:</strong> These calculations provide estimates based on your inputs and typical solar performance in your region. 
+                        Actual results may vary based on factors like panel efficiency, installation quality, roof orientation, shading, and local weather patterns. 
+                        For a precise assessment and customized quote, please contact our solar experts for a free consultation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- simple calculator ends  -->
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="assets/images/dreamhomesolar.webp" alt="Dream Home Solar Logo">
+                        <span>DREAM HOME SOLAR</span>
+                    </div>
+                    <p class="footer-description">
+                        Leading provider of sustainable solar energy solutions for homes and businesses, committed to
+                        powering a greener future.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="ourservices.html">Our Services</a></li>
+                        <li><a href="#">Packages</a></li>
+                        <li><a href="#">Cost Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Our Services -->
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="ourservices.html#rooftop">Roof Top Solutions</a></li>
+                        <li><a href="ourservices.html#commercial">Commercial Solar System</a></li>
+                        <li><a href="ourservices.html#solarfencing">Solar Fencing Systems</a></li>
+                        <li><a href="ourservices.html#solarbattery">Solar Batteries & Accessories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 90905 01504</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@dreamhomesolar.in</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-location-dot"></i>
+                            <span>53C, Aaram Palli Main, Kayalpattinam, Tamilnadu - 628204</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Dream Home Solar. All rights reserved. | Developed by <a
+                        href="https://wa.me/+916380986703" target="_blank" class="developer-link">Muhammed</a></p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section Ends  -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
