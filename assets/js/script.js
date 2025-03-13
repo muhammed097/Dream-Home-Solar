@@ -357,3 +357,42 @@ function calculate() {
     
     return false;
 }
+
+// Packages Page 
+// Animation for package cards
+document.addEventListener('DOMContentLoaded', function() {
+    // Add animation class to package cards
+    const packageCards = document.querySelectorAll('.package-card');
+    
+    // Create intersection observer to animate cards when they come into view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                // Unobserve after animation
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    // Observe each package card
+    packageCards.forEach(card => {
+        observer.observe(card);
+    });
+    
+    // Add click event to package buttons
+    const packageButtons = document.querySelectorAll('.package-button');
+    packageButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            // You can add custom functionality here
+            // For now, let's scroll to the contact section
+            const contactSection = document.querySelector('.additional-info-section');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
