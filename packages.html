@@ -36,7 +36,7 @@
                     <li><a href="aboutus.html">ABOUT US</a></li>
                     <li><a href="ourservices.html">OUR SERVICES</a></li>
                     <li><a href="packages.html">PACKAGES</a></li>
-                    <li><a href="costcalculator.html">COST CALCULATOR</a></li>
+                    <li><a href="#">COST CALCULATOR</a></li>
                     <li><a href="#">SERVICE REQUEST</a></li>
                     <!-- <li class="dropdown">
                         <a href="#">REQUIREMENTS</a>
@@ -58,133 +58,16 @@
     <section class="page-header">
         <div class="page-header-overlay"></div>
         <div class="page-header-content">
-            <h1 class="page-title">Cost Calculator</h1>
+            <h1 class="page-title">Packages</h1>
             <div class="breadcrumb">
                 <a href="index.html">Home</a>
                 <span class="separator">></span>
-                <span class="current-page">Cost Calculator</span>
+                <span class="current-page">Packages</span>
             </div>
         </div>
     </section>
     <!-- Services Header Ends  -->
-    <!-- Calculator Intro Section -->
-<section class="calculator-intro">
-    <div class="calculator-intro-container">
-        <div class="intro-content">
-            <span class="intro-label">CALCULATE YOUR NEEDS</span>
-            <h2 class="intro-title">Find the Perfect <span>Solar Solution</span> for Your Needs</h2>
-            <p class="intro-description">
-                Use our powerful calculators to determine the ideal solar setup for your home or business. 
-                Make informed decisions based on accurate estimates tailored to your specific requirements.
-            </p>
-        </div>
-    </div>
-</section>
-<!-- Calculator Intro Ends --> 
-
-<!-- Calculator Cards Section -->
-<section class="calculator-cards-section">
-    <div class="calculator-cards">
-        <div class="calculator-card active" id="batteryCard" onclick="switchCalculator('battery')">
-            <div class="card-icon">
-                <i class="fas fa-car-battery"></i>
-            </div>
-            <h3 class="card-title">Solar Battery Calculator</h3>
-            <p class="card-description">
-                Calculate the battery capacity you need based on your energy consumption and backup requirements.
-            </p>
-        </div>
-        
-        <div class="calculator-card" id="energyCard" onclick="switchCalculator('energy')">
-            <div class="card-icon">
-                <i class="fas fa-solar-panel"></i>
-            </div>
-            <h3 class="card-title">Solar Energy Calculator</h3>
-            <p class="card-description">
-                Determine how many solar panels you need to meet your electricity requirements.
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- Battery Calculator Container -->
-<section class="calculator-containerr" id="batteryCalculator">
-    <h2>Solar Battery Calculator</h2>
-    
-    <form id="batteryCalculatorForm">
-        <div class="calculator-element">
-            <label id="energyConsumptionLabel" class="calculator-input-label" for="energyConsumption">
-                Energy Consumption
-            </label>
-            <div class="input-group">
-                <input id="energyConsumption" type="number" min="0" step="1" onchange="resetUI()">
-                <select id="energyConsumptionUnit" onchange="resetUI()">
-                    <option value="whperday" selected>Wh/day</option>
-                    <option value="whpermonth">Wh/month</option>
-                    <option value="kwhperday">kWh/day</option>
-                    <option value="kwhpermonth">kWh/month</option>
-                </select>
-            </div>
-            <div id="energyConsumptionError" class="calculator-input-error">
-                <strong>Error:</strong> This field is required and must be greater than 0.
-            </div>
-        </div>
-
-        <div class="calculator-element">
-            <label id="batteryVoltageLabel" class="calculator-input-label" for="batteryVoltage">
-                Battery Bank Voltage
-            </label>
-            <select id="batteryVoltage" onchange="resetUI()">
-                <option value="12" selected>12V</option>
-                <option value="24">24V</option>
-                <option value="36">36V</option>
-                <option value="48">48V</option>
-            </select>
-            <div id="batteryVoltageError" class="calculator-input-error">
-                <strong>Error:</strong> Please select a battery bank voltage.
-            </div>
-        </div>
-
-        <div class="calculator-element">
-            <label id="batteryTypeLabel" class="calculator-input-label" for="batteryType">
-                Battery Type
-            </label>
-            <select id="batteryType" onchange="resetUI()">
-                <option value="lithium" selected>Lithium (LiFePO4)</option>
-                <option value="lead">Lead acid (sealed, flooded, AGM, gel)</option>
-            </select>
-            <div id="batteryTypeError" class="calculator-input-error">
-                <strong>Error:</strong> Please select a battery type.
-            </div>
-        </div>
-
-        <div class="calculator-element">
-            <label id="backupDaysLabel" class="calculator-input-label" for="backupDays">
-                Battery Backup Days
-            </label>
-            <div class="calculator-input-explainer">
-                How many days of backup power do you need during bad weather or low sun conditions?
-            </div>
-            <input id="backupDays" type="number" min="1" step="1" value="3" onchange="resetUI()">
-            <div id="backupDaysError" class="calculator-input-error">
-                <strong>Error:</strong> This field is required and must be greater than or equal to 1.
-            </div>
-        </div>
-
-        <div class="calculator-element">
-            <button class="calculator-button" onclick="return calculate()" type="button">Calculate Battery Size</button>
-        </div>
-    </form>
-
-    <div id="calculatorResults" class="calculator-results">
-        <div id="successResultsTitle" class="calculator-results-title"></div>
-        <div id="successResults" class="calculator-results-result"></div>
-        <div id="successNote" class="calculator-results-note">
-            These are estimated values. Consult with a Dream Home Solar professional for final system design.
-        </div>
-    </div>
-</section>
-    <!-- Footer Section -->
+     <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
@@ -214,7 +97,7 @@
                         <li><a href="aboutus.html">About Us</a></li>
                         <li><a href="ourservices.html">Our Services</a></li>
                         <li><a href="packages.html">Packages</a></li>
-                        <li><a href="costcalculator.html">Cost Calculator</a></li>
+                        <li><a href="#">Cost Calculator</a></li>
                     </ul>
                 </div>
 

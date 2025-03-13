@@ -225,175 +225,135 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Testimonial Scrolling Ends 
 
-// Calculator Scripts 
-document.addEventListener('DOMContentLoaded', function() {
-    // Card elements
-    const batteryCard = document.getElementById('battery-card');
-    const panelCard = document.getElementById('panel-card');
+// Calculator switch functionality
+function switchCalculator(calculatorType) {
+    const batteryCard = document.getElementById('batteryCard');
+    const energyCard = document.getElementById('energyCard');
+    const batteryCalculator = document.getElementById('batteryCalculator');
+    const energyCalculator = document.getElementById('energyCalculator');
     
-    // Calculator sections
-    const batteryCalculator = document.getElementById('battery-calculator');
-    const panelCalculator = document.getElementById('panel-calculator');
+    if (calculatorType === 'battery') {
+        batteryCard.classList.add('active');
+        energyCard.classList.remove('active');
+        batteryCalculator.style.display = 'block';
+        energyCalculator.style.display = 'none';
+    } else {
+        batteryCard.classList.remove('active');
+        energyCard.classList.add('active');
+        batteryCalculator.style.display = 'none';
+        energyCalculator.style.display = 'block';
+    }
+}
+
+// Initialize the page to show the battery calculator
+window.onload = function() {
+    switchCalculator('battery');
+};
+
+// Battery Calculator Functions
+function resetUI() {
+    // Get list of error and result element IDs
+    var errorIds = ["energyConsumptionError", "batteryVoltageError", "batteryTypeError", "backupDaysError", "calculatorResults"];
+
+    // Set the display of each error and result element to 'none'
+    errorIds.forEach(id => {
+        document.getElementById(id).style.display = "none";
+    });
+}
+
+function checkForErrors() {
+    let isError = false;
+
+    if (!document.getElementById("energyConsumption").value || document.getElementById("energyConsumption").value <= 0) {
+        document.getElementById("energyConsumptionError").style.display = "block";
+        document.getElementById("energyConsumptionLabel").scrollIntoView({
+            behavior: 'smooth'
+        });
+        isError = true;
+    }
+
+    if (!document.getElementById("backupDays").value || document.getElementById("backupDays").value < 1) {
+        document.getElementById("backupDaysError").style.display = "block";
+        document.getElementById("backupDaysLabel").scrollIntoView({
+            behavior: 'smooth'
+        });
+        isError = true;
+    }
+
+    return isError;
+}
+
+function convertToWhPerDay() {
+    const energyConsumption = parseFloat(document.getElementById("energyConsumption").value);
+    const unit = document.getElementById("energyConsumptionUnit").value;
     
-    // Back buttons
-    const backToBatteryCards = document.getElementById('back-to-cards-battery');
-    const backToPanelCards = document.getElementById('back-to-cards-panel');
+    switch (unit) {
+        case "whperday":
+            return energyConsumption;
+        case "whpermonth":
+            return energyConsumption / 30;
+        case "kwhperday":
+            return energyConsumption * 1000;
+        case "kwhpermonth":
+            return energyConsumption * 1000 / 30;
+        default:
+            return 0;
+    }
+}
+
+function calculate() {
+    resetUI();
     
-    // Calculate buttons
-    const calculateBatteryBtn = document.getElementById('calculate-battery');
-    const calculatePanelBtn = document.getElementById('calculate-panel');
+    if (checkForErrors())
+        return false;
     
-    // Results sections
-    const batteryResultsSection = document.getElementById('battery-results');
-    const panelResultsSection = document.getElementById('panel-results');
+    const dailyEnergyWh = convertToWhPerDay();
+    const nominalBatteryVoltage = parseFloat(document.getElementById("batteryVoltage").value);
+    const batteryType = document.getElementById("batteryType").value;
+    const backupDays = parseFloat(document.getElementById("backupDays").value);
     
-    // Card click handlers
-    batteryCard.addEventListener('click', function() {
-        batteryCalculator.classList.add('active');
-        panelCalculator.classList.remove('active');
-        window.scrollTo({ top: batteryCalculator.offsetTop - 20, behavior: 'smooth' });
+    const alternateLiFePO4Voltage = {
+        12: 12.8,
+        24: 25.6,
+        36: 38.4,
+        48: 51.2
+    };
+    
+    let inefficiencyFactor, batteryDoD, batteryVoltage;
+    
+    if (batteryType === "lithium") {
+        inefficiencyFactor = 1.05;
+        batteryDoD = 1.0;
+        batteryVoltage = alternateLiFePO4Voltage[nominalBatteryVoltage];
+    } else {
+        inefficiencyFactor = 1.2;
+        batteryDoD = 0.5;
+        batteryVoltage = nominalBatteryVoltage;
+    }
+    
+    let batterySizeAh = Math.ceil(dailyEnergyWh * backupDays * inefficiencyFactor / (batteryDoD * batteryVoltage));
+    let batterySizeWh = Math.ceil(batterySizeAh * batteryVoltage);
+    let batterySizekWh = Math.round(batterySizeWh / 1000 * 100) / 100;
+    
+    const resultsDiv = document.getElementById("calculatorResults");
+    let successResults = document.getElementById("successResults");
+    let successResultsTitle = document.getElementById("successResultsTitle");
+    let successNote = document.getElementById("successNote");
+    
+    successResultsTitle.innerHTML = 'Your ' + nominalBatteryVoltage + 'V ' + 
+        (batteryType === 'lithium' ? '(' + batteryVoltage + 'V) LiFePO4' : 'lead acid') + 
+        ' battery bank size:';
+    
+    successResults.innerHTML = '<strong>' + batterySizeAh + ' Ah</strong> ' + 
+        (batterySizeWh < 1000 ? '(' + batterySizeWh + ' Wh)' : '(' + batterySizekWh + ' kWh)');
+    
+    resultsDiv.style.display = "block";
+    successResults.style.display = "block";
+    successNote.style.display = "block";
+    
+    document.getElementById("calculatorResults").scrollIntoView({
+        behavior: 'smooth'
     });
     
-    panelCard.addEventListener('click', function() {
-        panelCalculator.classList.add('active');
-        batteryCalculator.classList.remove('active');
-        window.scrollTo({ top: panelCalculator.offsetTop - 20, behavior: 'smooth' });
-    });
-    
-    // Back button handlers
-    backToBatteryCards.addEventListener('click', function() {
-        batteryCalculator.classList.remove('active');
-        batteryResultsSection.classList.remove('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    backToPanelCards.addEventListener('click', function() {
-        panelCalculator.classList.remove('active');
-        panelResultsSection.classList.remove('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    // Battery Calculator Logic
-    calculateBatteryBtn.addEventListener('click', function() {
-        // Get input values
-        const dailyConsumption = parseFloat(document.getElementById('daily-consumption').value);
-        const backupDays = parseFloat(document.getElementById('backup-days').value);
-        const batteryType = document.getElementById('battery-type').value;
-        const dischargeDepth = parseFloat(document.getElementById('discharge-depth').value) / 100;
-        
-        // Validate inputs
-        if (isNaN(dailyConsumption) || isNaN(backupDays) || !batteryType || isNaN(dischargeDepth)) {
-            alert('Please fill in all required fields with valid values.');
-            return;
-        }
-        
-        // Calculate battery capacity
-        let systemVoltage = 48; // Standard system voltage
-        let efficiencyFactor = 0.85; // System efficiency
-        
-        // Adjust for battery type
-        let batteryEfficiency;
-        let cycleLife;
-        let costPerKwh;
-        
-        switch(batteryType) {
-            case 'lithium':
-                batteryEfficiency = 0.95;
-                cycleLife = 4000;
-                costPerKwh = 35000; // Cost in INR per kWh
-                break;
-            case 'lead':
-                batteryEfficiency = 0.80;
-                cycleLife = 1500;
-                costPerKwh = 15000; // Cost in INR per kWh
-                break;
-            case 'gel':
-                batteryEfficiency = 0.85;
-                cycleLife = 2000;
-                costPerKwh = 18000; // Cost in INR per kWh
-                break;
-            default:
-                batteryEfficiency = 0.85;
-                cycleLife = 2000;
-                costPerKwh = 20000;
-        }
-        
-        // Calculate capacity in kWh
-        const capacityKwh = (dailyConsumption * backupDays) / (dischargeDepth * batteryEfficiency * efficiencyFactor);
-        
-        // Calculate capacity in Ah
-        const capacityAh = (capacityKwh * 1000) / systemVoltage;
-        
-        // Calculate estimated cost
-        const estimatedCost = capacityKwh * costPerKwh;
-        
-        // Update results
-        document.getElementById('battery-capacity').textContent = capacityKwh.toFixed(2) + ' kWh';
-        document.getElementById('battery-ah').textContent = capacityAh.toFixed(2) + ' Ah';
-        document.getElementById('battery-cost').textContent = '₹' + Math.round(estimatedCost).toLocaleString('en-IN');
-        document.getElementById('battery-life').textContent = cycleLife + ' Cycles';
-        
-        // Show results section
-        batteryResultsSection.classList.add('active');
-        
-        // Scroll to results
-        batteryResultsSection.scrollIntoView({ behavior: 'smooth' });
-    });
-    
-    // Solar Panel Calculator Logic
-    calculatePanelBtn.addEventListener('click', function() {
-        // Get input values
-        const state = parseFloat(document.getElementById('state').value);
-        const category = parseInt(document.getElementById('category').value);
-        const monthlyBill = parseFloat(document.getElementById('monthlyBill').value);
-        
-        // Validate inputs
-        if (isNaN(state) || isNaN(category) || isNaN(monthlyBill)) {
-            alert("Please fill in all required fields with valid values.");
-            return;
-        }
-        
-        // Solar calculation logic
-        let suggestedCapacity, monthlySavingKwh, monthlySavingRs, requiredSpace, co2Reduction;
-        
-        // Check if this is the specific case (Tamil Nadu, Residential, 1000 rupees)
-        if (state === 5.8 && category === 2 && monthlyBill === 1000) {
-            suggestedCapacity = "1";
-            monthlySavingKwh = "135";
-            monthlySavingRs = "783";
-            requiredSpace = "100";
-            co2Reduction = "32";
-        } else {
-            const systemEfficiency = category === 2 ? 0.75 : 0.85;
-            
-            // Calculate capacity
-            suggestedCapacity = (monthlyBill / 1000).toFixed(2);
-            
-            // Calculate monthly energy generation
-            monthlySavingKwh = Math.round(135 * parseFloat(suggestedCapacity));
-            
-            // Calculate monthly savings in rupees
-            const ratePerKwh = category === 2 ? 5.8 : 7.5;
-            monthlySavingRs = Math.round(monthlySavingKwh * ratePerKwh * 0.725);
-            
-            // Calculate required space (100 sq.ft per kW)
-            requiredSpace = Math.round(parseFloat(suggestedCapacity) * 100);
-            
-            // Calculate CO2 reduction (32 tons per kW per year)
-            co2Reduction = Math.round(parseFloat(suggestedCapacity) * 32);
-        }
-        
-        // Update results
-        document.getElementById('suggestedCapacity').textContent = suggestedCapacity + ' kW';
-        document.getElementById('monthlySavingKwh').textContent = monthlySavingKwh + ' kWh';
-        document.getElementById('monthlySavingRs').textContent = '₹' + monthlySavingRs;
-        document.getElementById('requiredSpace').textContent = requiredSpace + ' sq.ft';
-        document.getElementById('co2Reduction').textContent = co2Reduction + ' Ton CO₂ Reduction Per Year';
-        
-        // Show results section
-        panelResultsSection.classList.add('active');
-        
-        // Scroll to results
-        panelResultsSection.scrollIntoView({ behavior: 'smooth' });
-    });
-});
+    return false;
+}
