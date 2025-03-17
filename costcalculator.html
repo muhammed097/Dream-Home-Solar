@@ -105,6 +105,158 @@
             </p>
         </div>
     </div>
+    <div class="calculator-containerr" id="energyCalculator">
+        <h2>Solar Energy Calculator</h2>
+        
+        <form id="solarCalculatorForm" class="calculator-form">
+            <div class="calculator-element">
+                <label class="calculator-input-label" for="state">
+                    Select State
+                </label>
+                <select id="state" required>
+                    <option value="">Select State</option>
+                    <option value="5.1">Andaman and Nicobar</option>
+                    <option value="7.3">Andhra Pradesh</option>
+                    <option value="4.9">Bihar</option>
+                    <option value="2.2">Chhattisgarh</option>
+                    <option value="2.5">Dadra and Nagar Haveli</option>
+                    <option value="2.5">Daman and Diu</option>
+                    <option value="3.7">Goa</option>
+                    <option value="6.5">Gujarat</option>
+                    <option value="5.6">Haryana</option>
+                    <option value="4">Himachal Pradesh</option>
+                    <option value="3.3">Jammu and Kashmir</option>
+                    <option value="6.2">Karnataka</option>
+                    <option value="7.5">Kerala</option>
+                    <option value="4">Lakshadweep</option>
+                    <option value="6.8">Madhya Pradesh</option>
+                    <option value="8.8">Maharashtra</option>
+                    <option value="4.1">Meghalaya</option>
+                    <option value="6.4">Delhi</option>
+                    <option value="5.3">Odisha</option>
+                    <option value="2.4">Puducherry</option>
+                    <option value="5.8">Punjab</option>
+                    <option value="5.3">Rajasthan</option>
+                    <option value="5.8">Tamil Nadu</option>
+                    <option value="5.4">Tripura</option>
+                    <option value="3.8">Uttar Pradesh</option>
+                    <option value="3.1">Uttarakhand</option>
+                    <option value="8">West Bengal</option>
+                </select>
+                <div id="stateError" class="calculator-input-error">
+                    <strong>Error:</strong> Please select a state.
+                </div>
+            </div>
+    
+            <div class="calculator-element">
+                <label class="calculator-input-label" for="category">
+                    Select Category
+                </label>
+                <select id="category" required>
+                    <option value="">Select Category</option>
+                    <option value="2">Residential</option>
+                    <option value="3">Industrial</option>
+                </select>
+                <div id="categoryError" class="calculator-input-error">
+                    <strong>Error:</strong> Please select a category.
+                </div>
+            </div>
+    
+            <div class="calculator-element">
+                <label class="calculator-input-label" for="monthlyBill">
+                    Monthly Electricity Bill
+                </label>
+                <input id="monthlyBill" type="text" placeholder="Enter monthly bill amount in INR" required>
+                <div id="monthlyBillError" class="calculator-input-error">
+                    <strong>Error:</strong> This field is required and must be a valid number.
+                </div>
+            </div>
+    
+            <div class="calculator-element">
+                <button class="calculator-button" type="submit">Calculate Solar System</button>
+            </div>
+        </form>
+    
+        <div id="calculatorResults" class="calculator-results">
+            <div class="results-title">
+                <h3>Your Solar Solution Results</h3>
+                <p>Based on your inputs, here's what we recommend:</p>
+            </div>
+    
+            <div class="results-grid">
+                <!-- Suggested Capacity -->
+                <div class="result-card">
+                    <div class="result-card-content">
+                        <div class="result-label">Suggested Capacity (kW)</div>
+                        <div class="result-value" id="suggestedCapacity">0</div>
+                    </div>
+                    <div class="result-card-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                </div>
+    
+                <!-- Monthly Saving kWh -->
+                <div class="result-card">
+                    <div class="result-card-content">
+                        <div class="result-label">Monthly Saving (kWh)</div>
+                        <div class="result-value" id="monthlySavingKwh">0</div>
+                    </div>
+                    <div class="result-card-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                </div>
+    
+                <!-- Monthly Saving INR -->
+                <div class="result-card">
+                    <div class="result-card-content">
+                        <div class="result-label">Monthly Saving (INR)</div>
+                        <div class="result-value" id="monthlySavingInr">₹0</div>
+                    </div>
+                    <div class="result-card-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                </div>
+    
+                <!-- Required Space -->
+                <div class="result-card">
+                    <div class="result-card-content">
+                        <div class="result-label">Required Space (sqft)</div>
+                        <div class="result-value" id="requiredSpace">0</div>
+                    </div>
+                    <div class="result-card-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+    
+                <!-- CO2 Reduction -->
+                <div class="result-card">
+                    <div class="result-card-content">
+                        <div class="result-label">CO<sub>2</sub> Emission Reduction Per Year</div>
+                        <div class="result-value" id="co2Reduction">0 <span class="result-unit">Ton</span></div>
+                    </div>
+                    <div class="result-card-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                </div>
+    
+                <!-- CTA Card -->
+                <div class="cta-card">
+                    <h4>Ready to go solar?</h4>
+                    <p>Contact our experts for a detailed consultation tailored to your specific needs and get a personalized quote for your solar system installation.</p>
+                    <button class="cta-button" onclick="window.location.href='https://wa.me/+916380986703'">Request Free Quote</button> 
+                </div>
+            </div>
+                     
+            <div class="back-button-container">
+                <button class="back-button" onclick="backToCalculator()">
+                    <i class="fas fa-arrow-left"></i> Back to Calculator
+                </button>
+            </div>
+            <div class="disclaimer">
+                These are estimated values. Consult with a Dream Home Solar professional for final system design.
+            </div>
+        </div>
+    </div>    
 </section>
 
 <!-- Battery Calculator Container -->
@@ -176,13 +328,58 @@
         </div>
     </form>
 
-    <div id="calculatorResults" class="calculator-results">
+    <div id="batteryCalculatorResults" class="calculator-results">
         <div id="successResultsTitle" class="calculator-results-title"></div>
         <div id="successResults" class="calculator-results-result"></div>
         <div id="successNote" class="calculator-results-note">
             These are estimated values. Consult with a Dream Home Solar professional for final system design.
         </div>
     </div>
+    <!-- User Information Modal -->
+<div class="modal-overlay" id="userInfoModal">
+    <div class="user-modal">
+        <button class="modal-close" id="modalClose">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div id="modalFormContent">
+            <div class="modal-header">
+                <h3 class="modal-title">See Your Battery Results</h3>
+                <p class="modal-subtitle">Please share your contact details to view your calculation</p>
+            </div>
+            
+            <form id="userInfoForm" class="user-form">
+                <div class="form-group" id="nameGroup">
+                    <label for="userName">Full Name</label>
+                    <input type="text" id="userName" placeholder="Enter your full name">
+                    <div class="form-error" id="nameError">Please enter your name</div>
+                </div>
+                
+                <div class="form-group" id="phoneGroup">
+                    <label for="userPhone">Phone Number</label>
+                    <input type="tel" id="userPhone" placeholder="Enter your phone number">
+                    <div class="form-error" id="phoneError">Please enter a valid phone number</div>
+                </div>
+                
+                <div class="form-group" id="placeGroup">
+                    <label for="userPlace">Location</label>
+                    <input type="text" id="userPlace" placeholder="Enter your city/location">
+                    <div class="form-error" id="placeError">Please enter your location</div>
+                </div>
+                
+                <div class="form-group" id="emailGroup">
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" placeholder="Enter your email address">
+                    <div class="form-error" id="emailError">Please enter a valid email</div>
+                </div>
+                
+                <button type="submit" class="submit-btn">View My Results</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+</div>
 </section>
     <!-- Footer Section -->
     <footer class="footer">
