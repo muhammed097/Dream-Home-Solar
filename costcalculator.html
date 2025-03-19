@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&display=swap"
         rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/costcalculator.css">
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/mobile.css">
@@ -189,6 +190,7 @@
             </div>
 
             <div id="calculatorResults" class="calculator-results">
+
                 <div class="results-title">
                     <h3>Your Solar Solution Results</h3>
                     <p>Based on your inputs, here's what we recommend:</p>
@@ -255,8 +257,10 @@
                         <h4>Ready to go solar?</h4>
                         <p>Contact our experts for a detailed consultation tailored to your specific needs and get a
                             personalized quote for your solar system installation.</p>
-                        <button class="cta-button" onclick="window.location.href='https://wa.me/+916380986703'">Request
-                            Free Quote</button>
+                        <button class="cta-button" onclick="window.open('https://wa.me/+916380986703', '_blank')">
+                            Request Free Quote
+                        </button>
+
                     </div>
                 </div>
 
@@ -269,6 +273,7 @@
                     These are estimated values. Consult with a Dream Home Solar professional for final system design.
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -368,25 +373,30 @@
                             <input type="text" id="userName" placeholder="Enter your full name">
                             <div class="form-error" id="nameError">Please enter your name</div>
                         </div>
-
+                    
                         <div class="form-group" id="phoneGroup">
                             <label for="userPhone">Phone Number</label>
                             <input type="tel" id="userPhone" placeholder="Enter your phone number">
                             <div class="form-error" id="phoneError">Please enter a valid phone number</div>
                         </div>
-
+                    
                         <div class="form-group" id="placeGroup">
                             <label for="userPlace">Location</label>
                             <input type="text" id="userPlace" placeholder="Enter your city/location">
                             <div class="form-error" id="placeError">Please enter your location</div>
                         </div>
-
+                    
                         <div class="form-group" id="emailGroup">
                             <label for="userEmail">Email</label>
                             <input type="email" id="userEmail" placeholder="Enter your email address">
                             <div class="form-error" id="emailError">Please enter a valid email</div>
                         </div>
-
+                        
+                        <div class="form-group" id="sourceGroup">
+                            <label for="userSource">Source</label>
+                            <input type="text" id="userSource" value="solar battery" readonly>
+                        </div>
+                    
                         <button type="submit" class="submit-btn">View My Results</button>
                     </form>
 
@@ -472,9 +482,58 @@
             </div>
         </div>
     </footer>
+    <!-- jQuery User Data Modal for Energy Calculator -->
+    <div class="jq-energy-modal-overlay" id="jqEnrUserInfoModal">
+        <div class="jq-energy-user-modal">
+            <button class="jq-energy-modal-close" id="jqEnrModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div id="jqEnrModalFormContent">
+                <div class="jq-energy-modal-header">
+                    <h3 class="jq-energy-modal-title">See Your Solar System Results</h3>
+                    <p class="jq-energy-modal-subtitle">Please share your contact details to view your calculation</p>
+                </div>
+
+                <form id="jqEnrUserInfoForm" class="jq-energy-user-form">
+                    <div class="jq-energy-form-group" id="jqEnrSourceGroup">
+                        <label for="jqEnrUserSource">Source</label>
+                        <input type="text" id="jqEnrUserSource" value="Solar Energy Calculator" readonly>
+                    </div>
+
+                    <div class="jq-energy-form-group" id="jqEnrNameGroup">
+                        <label for="jqEnrUserName">Full Name</label>
+                        <input type="text" id="jqEnrUserName" placeholder="Enter your full name">
+                        <div class="jq-energy-form-error" id="jqEnrNameError">Please enter your name</div>
+                    </div>
+
+                    <div class="jq-energy-form-group" id="jqEnrPhoneGroup">
+                        <label for="jqEnrUserPhone">Phone Number</label>
+                        <input type="tel" id="jqEnrUserPhone" placeholder="Enter your phone number">
+                        <div class="jq-energy-form-error" id="jqEnrPhoneError">Please enter a valid phone number</div>
+                    </div>
+
+                    <div class="jq-energy-form-group" id="jqEnrPlaceGroup">
+                        <label for="jqEnrUserPlace">Location</label>
+                        <input type="text" id="jqEnrUserPlace" placeholder="Enter your city/location">
+                        <div class="jq-energy-form-error" id="jqEnrPlaceError">Please enter your location</div>
+                    </div>
+
+                    <div class="jq-energy-form-group" id="jqEnrEmailGroup">
+                        <label for="jqEnrUserEmail">Email</label>
+                        <input type="email" id="jqEnrUserEmail" placeholder="Enter your email address">
+                        <div class="jq-energy-form-error" id="jqEnrEmailError">Please enter a valid email</div>
+                    </div>
+
+                    <button type="submit" class="jq-energy-submit-btn">View My Results</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Footer Section Ends  -->
     <script src="assets/js/script.js"></script>
     <script src="assets/js/energycalculator.js"></script>
+    <script src="assets/js/solarbatterycalculator.js"></script>
 </body>
 
 </html>

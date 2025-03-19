@@ -70,7 +70,7 @@ const solarData = [
     el('batteryCalculator').style.display = calculatorType === 'battery' ? 'block' : 'none';
     el('energyCalculator').style.display = calculatorType === 'battery' ? 'none' : 'block';
   }
-  
+
   function lookupSolarData(monthlyBill) {
     let lowerValue = null;
     let higherValue = null;
@@ -217,4 +217,275 @@ const solarData = [
     });
   });
 
-  
+  $(document).ready(function() {
+    // Add jQuery CDN if not already included
+    if (typeof jQuery === 'undefined') {
+      const script = document.createElement('script');
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js";
+      document.head.appendChild(script);
+    }
+    
+    // Store calculated results for later use
+    let energyCalculationResults = {};
+    
+    // Override the form submission with jQuery handler
+    $("#solarCalculatorForm").on("submit", function(event) {
+      event.preventDefault();
+      
+      // First, make sure to hide the results section if it's visible from previous calculations
+      $("#calculatorResults").hide();
+      
+      // Hide any previous errors
+      $(".calculator-input-error").hide();
+      
+      // Get values from form
+      const state = $("#state").val();
+      const category = $("#category").val();
+      const monthlyBill = parseFloat($("#monthlyBill").val());
+      
+      let hasError = false;
+      
+      // Validate inputs
+      if (!state) {
+        $("#stateError").show();
+        hasError = true;
+      }
+      
+      if (!category) {
+        $("#categoryError").show();
+        hasError = true;
+      }
+      
+      if (!monthlyBill || isNaN(monthlyBill) || monthlyBill < 1000) {
+        const monthlyBillError = $("#monthlyBillError");
+        monthlyBillError.show();
+        monthlyBillError.html('<strong>Error:</strong> Amount must be at least ₹1000.');
+        hasError = true;
+      }
+      
+      if (monthlyBill > 50000) {
+        $("#overLimitModal").show();
+        return;
+      }
+      
+      if (hasError) return;
+      
+      // Process the calculation but store results instead of displaying
+      let result = null;
+      
+      // Find the appropriate data from solarData
+      for (const item of solarData) {
+        if (item.amount === monthlyBill) {
+          result = item;
+          break;
+        }
+      }
+      
+      // If exact match not found, find closest values and interpolate
+      if (!result) {
+        let lowerValue = null;
+        let higherValue = null;
+        
+        for (const item of solarData) {
+          if (item.amount < monthlyBill) {
+            lowerValue = item;
+          } else if (!higherValue) {
+            higherValue = item;
+            break;
+          }
+        }
+        
+        if (!higherValue && lowerValue) {
+          result = lowerValue;
+        } else if (!lowerValue && higherValue) {
+          result = higherValue;
+        } else if (lowerValue && higherValue) {
+          const ratio = (monthlyBill - lowerValue.amount) / (higherValue.amount - lowerValue.amount);
+          
+          result = {
+            amount: monthlyBill,
+            capacity: interpolate(lowerValue.capacity, higherValue.capacity, ratio),
+            savings_kwh: Math.round(interpolate(lowerValue.savings_kwh, higherValue.savings_kwh, ratio)),
+            savings_inr: Math.round(interpolate(lowerValue.savings_inr, higherValue.savings_inr, ratio)),
+            req_sqf: Math.round(interpolate(lowerValue.req_sqf, higherValue.req_sqf, ratio)),
+            co2: Math.round(interpolate(lowerValue.co2, higherValue.co2, ratio))
+          };
+        } else {
+          result = solarData[0]; // Use minimum values if no suitable match
+        }
+      }
+      
+      // Store calculation results
+      energyCalculationResults = result;
+      
+      // Show the jQuery modal instead of results
+      showJQueryEnergyModal();
+    });
+    
+    // Helper function for interpolation
+    function interpolate(val1, val2, ratio) {
+      return val1 + (val2 - val1) * ratio;
+    }
+    
+    // Function to show the jQuery modal
+    function showJQueryEnergyModal() {
+      $("#jqEnrUserInfoModal").addClass("active");
+      $("body").css("overflow", "hidden");
+    }
+    
+    // Function to close the jQuery modal
+    function closeJQueryEnergyModal() {
+      $("#jqEnrUserInfoModal").removeClass("active");
+      $("#jqEnrUserInfoForm")[0].reset();
+      
+      // Remove error classes
+      $(".jq-energy-form-group").removeClass("error");
+      
+      // Allow body scrolling
+      $("body").css("overflow", "auto");
+    }
+    
+    // Validate jQuery form
+    function validateJQueryEnergyForm() {
+      let isValid = true;
+      
+      // Validate name
+      const name = $("#jqEnrUserName").val().trim();
+      if (name === '') {
+        $("#jqEnrNameGroup").addClass("error");
+        isValid = false;
+      } else {
+        $("#jqEnrNameGroup").removeClass("error");
+      }
+      
+      // Validate phone
+      const phone = $("#jqEnrUserPhone").val().trim();
+      if (phone === '' || !/^[0-9]{10,12}$/.test(phone.replace(/[\s-()]/g, ''))) {
+        $("#jqEnrPhoneGroup").addClass("error");
+        isValid = false;
+      } else {
+        $("#jqEnrPhoneGroup").removeClass("error");
+      }
+      
+      // Validate place
+      const place = $("#jqEnrUserPlace").val().trim();
+      if (place === '') {
+        $("#jqEnrPlaceGroup").addClass("error");
+        isValid = false;
+      } else {
+        $("#jqEnrPlaceGroup").removeClass("error");
+      }
+      
+      // Validate email
+      const email = $("#jqEnrUserEmail").val().trim();
+      if (email === '' || !/\S+@\S+\.\S+/.test(email)) {
+        $("#jqEnrEmailGroup").addClass("error");
+        isValid = false;
+      } else {
+        $("#jqEnrEmailGroup").removeClass("error");
+      }
+      
+      return isValid;
+    }
+    
+    // Handle form submission
+    $("#jqEnrUserInfoForm").on("submit", function(event) {
+      event.preventDefault();
+      
+      if (!validateJQueryEnergyForm()) {
+        return;
+      }
+      
+      // Get user input values
+      const userData = {
+        name: $("#jqEnrUserName").val().trim(),
+        phone: $("#jqEnrUserPhone").val().trim(),
+        place: $("#jqEnrUserPlace").val().trim(),
+        email: $("#jqEnrUserEmail").val().trim(),
+        date: new Date().toLocaleString(),
+        // Add source information
+        source: $("#jqEnrUserSource").val(),
+        // Add energy calculation metadata
+        monthlyBill: $("#monthlyBill").val(),
+        state: $("#state option:selected").text(),
+        category: $("#category option:selected").text()
+      };
+      
+      // Send data to SheetDB
+      sendEnergyFormToSheetDb(userData);
+      
+      // Close the modal
+      closeJQueryEnergyModal();
+      
+      // Now display the energy calculation results
+      displayEnergyCalculationResults();
+    });
+    
+    // Function to send data to SheetDB
+    function sendEnergyFormToSheetDb(data) {
+      // Replace with your SheetDB API URL for energy calculator
+      const sheetDbUrl = 'https://sheetdb.io/api/v1/z1w3k0nnefkbc';
+      
+      // Format the data for SheetDB
+      const sheetData = {
+        data: {
+          Name: data.name,
+          Phone: data.phone,
+          Place: data.place,
+          Email: data.email,
+          Timestamp: data.date,
+          Source: data.source, // Include the source field
+          monthly_bill: data.monthlyBill,
+          state: data.state,
+          category: data.category,
+          capacity: energyCalculationResults.capacity,
+          savings_kwh: energyCalculationResults.savings_kwh,
+          savings_inr: energyCalculationResults.savings_inr
+        }
+      };
+      
+      console.log("Sending energy calculation data to SheetDB:", sheetData);
+      
+      // Send data to SheetDB
+      fetch(sheetDbUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sheetData)
+      })
+        .then(response => response.json())
+        .then(data => console.log('Success:', data))
+        .catch(error => console.error('Error submitting form:', error));
+    }
+    
+    // Function to display energy calculation results
+    function displayEnergyCalculationResults() {
+      const data = energyCalculationResults;
+      
+      if (!data) return; // Safety check
+      
+      // Update all the result values
+      $("#suggestedCapacity").text(data.capacity);
+      $("#monthlySavingKwh").text(data.savings_kwh);
+      $("#monthlySavingInr").text(`₹${data.savings_inr.toLocaleString('en-IN')}`);
+      $("#requiredSpace").text(data.req_sqf);
+      $("#co2Reduction").html(`${data.co2} <span class="result-unit">Ton</span>`);
+      
+      // Now show the results section
+      $("#calculatorResults").show();
+      
+      // Scroll to the results section
+      $("#calculatorResults")[0].scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Close modal events
+    $("#jqEnrModalClose").on("click", closeJQueryEnergyModal);
+    
+    // Click outside to close
+    $("#jqEnrUserInfoModal").on("click", function(e) {
+      if (e.target === this) {
+        closeJQueryEnergyModal();
+      }
+    });
+  });
