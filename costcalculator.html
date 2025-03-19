@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,319 +69,332 @@
     </section>
     <!-- Services Header Ends  -->
     <!-- Calculator Intro Section -->
-<section class="calculator-intro">
-    <div class="calculator-intro-container">
-        <div class="intro-content">
-            <span class="intro-label">CALCULATE YOUR NEEDS</span>
-            <h2 class="intro-title">Find the Perfect <span>Solar Solution</span> for Your Needs</h2>
-            <p class="intro-description">
-                Use our powerful calculators to determine the ideal solar setup for your home or business. 
-                Make informed decisions based on accurate estimates tailored to your specific requirements.
-            </p>
+    <section class="calculator-intro">
+        <div class="calculator-intro-container">
+            <div class="intro-content">
+                <span class="intro-label">CALCULATE YOUR NEEDS</span>
+                <h2 class="intro-title">Find the Perfect <span>Solar Solution</span> for Your Needs</h2>
+                <p class="intro-description">
+                    Use our powerful calculators to determine the ideal solar setup for your home or business.
+                    Make informed decisions based on accurate estimates tailored to your specific requirements.
+                </p>
+            </div>
         </div>
-    </div>
-</section>
-<!-- Calculator Intro Ends --> 
+    </section>
+    <!-- Calculator Intro Ends -->
 
-<!-- Calculator Cards Section -->
-<section class="calculator-cards-section">
-    <div class="calculator-cards">
-        <div class="calculator-card active" id="batteryCard" onclick="switchCalculator('battery')">
-            <div class="card-icon">
-                <i class="fas fa-car-battery"></i>
+    <!-- Calculator Cards Section -->
+    <section class="calculator-cards-section">
+        <div class="calculator-cards">
+            <div class="calculator-card active" id="batteryCard" onclick="switchCalculator('battery')">
+                <div class="card-icon">
+                    <i class="fas fa-car-battery"></i>
+                </div>
+                <h3 class="card-title">Solar Battery Calculator</h3>
+                <p class="card-description">
+                    Calculate the battery capacity you need based on your energy consumption and backup requirements.
+                </p>
             </div>
-            <h3 class="card-title">Solar Battery Calculator</h3>
-            <p class="card-description">
-                Calculate the battery capacity you need based on your energy consumption and backup requirements.
-            </p>
+
+            <div class="calculator-card" id="energyCard" onclick="switchCalculator('energy')">
+                <div class="card-icon">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <h3 class="card-title">Solar Energy Calculator</h3>
+                <p class="card-description">
+                    Determine how many solar panels you need to meet your electricity requirements.
+                </p>
+            </div>
         </div>
-        
-        <div class="calculator-card" id="energyCard" onclick="switchCalculator('energy')">
-            <div class="card-icon">
-                <i class="fas fa-solar-panel"></i>
+        <div class="calculator-containerr" id="energyCalculator">
+            <h2>Solar Energy Calculator</h2>
+
+            <form id="solarCalculatorForm" class="calculator-form">
+                <div class="calculator-element">
+                    <label class="calculator-input-label" for="state">
+                        Select State
+                    </label>
+                    <select id="state" required>
+                        <option value="">Select State</option>
+                        <option value="5.1">Andaman and Nicobar</option>
+                        <option value="7.3">Andhra Pradesh</option>
+                        <option value="4.9">Bihar</option>
+                        <option value="2.2">Chhattisgarh</option>
+                        <option value="2.5">Dadra and Nagar Haveli</option>
+                        <option value="2.5">Daman and Diu</option>
+                        <option value="3.7">Goa</option>
+                        <option value="6.5">Gujarat</option>
+                        <option value="5.6">Haryana</option>
+                        <option value="4">Himachal Pradesh</option>
+                        <option value="3.3">Jammu and Kashmir</option>
+                        <option value="6.2">Karnataka</option>
+                        <option value="7.5">Kerala</option>
+                        <option value="4">Lakshadweep</option>
+                        <option value="6.8">Madhya Pradesh</option>
+                        <option value="8.8">Maharashtra</option>
+                        <option value="4.1">Meghalaya</option>
+                        <option value="6.4">Delhi</option>
+                        <option value="5.3">Odisha</option>
+                        <option value="2.4">Puducherry</option>
+                        <option value="5.8">Punjab</option>
+                        <option value="5.3">Rajasthan</option>
+                        <option value="5.8">Tamil Nadu</option>
+                        <option value="5.4">Tripura</option>
+                        <option value="3.8">Uttar Pradesh</option>
+                        <option value="3.1">Uttarakhand</option>
+                        <option value="8">West Bengal</option>
+                    </select>
+                    <div id="stateError" class="calculator-input-error">
+                        <strong>Error:</strong> Please select a state.
+                    </div>
+                </div>
+
+                <div class="calculator-element">
+                    <label class="calculator-input-label" for="category">
+                        Select Category
+                    </label>
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                        <option value="2">Residential</option>
+                        <option value="3">Industrial</option>
+                    </select>
+                    <div id="categoryError" class="calculator-input-error">
+                        <strong>Error:</strong> Please select a category.
+                    </div>
+                </div>
+
+                <div class="calculator-element">
+                    <label class="calculator-input-label" for="monthlyBill">
+                        Monthly Electricity Bill
+                    </label>
+                    <input id="monthlyBill" type="text" placeholder="Enter monthly bill amount in INR" required>
+                    <div id="monthlyBillError" class="calculator-input-error">
+                        <strong>Error:</strong> This field is required and must be a valid number.
+                    </div>
+                </div>
+
+                <div class="calculator-element">
+                    <button class="calculator-button" type="submit">Calculate Solar System</button>
+                </div>
+            </form>
+            <div id="overLimitModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">×</span>
+                    <h2>Bigger Plans? Let's Discuss!</h2>
+                    <p>It looks like you've entered a value above 50,000. For higher energy calculations and customized
+                        solutions, please get in touch with our technical team. We're happy to assist you!</p>
+                    <a href="tel:+919090501504" class="modal-button">Call Now</a>
+                    <a href="https://wa.me/+919090501504" class="modal-button">Whatsapp Now</a>
+                </div>
             </div>
-            <h3 class="card-title">Solar Energy Calculator</h3>
-            <p class="card-description">
-                Determine how many solar panels you need to meet your electricity requirements.
-            </p>
+
+            <div id="calculatorResults" class="calculator-results">
+                <div class="results-title">
+                    <h3>Your Solar Solution Results</h3>
+                    <p>Based on your inputs, here's what we recommend:</p>
+                </div>
+
+                <div class="results-grid">
+                    <!-- Suggested Capacity -->
+                    <div class="result-card">
+                        <div class="result-card-content">
+                            <div class="result-label">Suggested Capacity (kW)</div>
+                            <div class="result-value" id="suggestedCapacity">0</div>
+                        </div>
+                        <div class="result-card-icon">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Saving kWh -->
+                    <div class="result-card">
+                        <div class="result-card-content">
+                            <div class="result-label">Monthly Saving (kWh)</div>
+                            <div class="result-value" id="monthlySavingKwh">0</div>
+                        </div>
+                        <div class="result-card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Saving INR -->
+                    <div class="result-card">
+                        <div class="result-card-content">
+                            <div class="result-label">Monthly Saving (INR)</div>
+                            <div class="result-value" id="monthlySavingInr">₹0</div>
+                        </div>
+                        <div class="result-card-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                    </div>
+
+                    <!-- Required Space -->
+                    <div class="result-card">
+                        <div class="result-card-content">
+                            <div class="result-label">Required Space (sqft)</div>
+                            <div class="result-value" id="requiredSpace">0</div>
+                        </div>
+                        <div class="result-card-icon">
+                            <i class="fas fa-expand"></i>
+                        </div>
+                    </div>
+
+                    <!-- CO2 Reduction -->
+                    <div class="result-card">
+                        <div class="result-card-content">
+                            <div class="result-label">CO<sub>2</sub> Emission Reduction Per Year</div>
+                            <div class="result-value" id="co2Reduction">0 <span class="result-unit">Ton</span></div>
+                        </div>
+                        <div class="result-card-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                    </div>
+
+                    <!-- CTA Card -->
+                    <div class="cta-card">
+                        <h4>Ready to go solar?</h4>
+                        <p>Contact our experts for a detailed consultation tailored to your specific needs and get a
+                            personalized quote for your solar system installation.</p>
+                        <button class="cta-button" onclick="window.location.href='https://wa.me/+916380986703'">Request
+                            Free Quote</button>
+                    </div>
+                </div>
+
+                <div class="back-button-container">
+                    <button class="back-button" onclick="backToCalculator()">
+                        <i class="fas fa-arrow-left"></i> Back to Calculator
+                    </button>
+                </div>
+                <div class="disclaimer">
+                    These are estimated values. Consult with a Dream Home Solar professional for final system design.
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="calculator-containerr" id="energyCalculator">
-        <h2>Solar Energy Calculator</h2>
-        
-        <form id="solarCalculatorForm" class="calculator-form">
+    </section>
+
+    <!-- Battery Calculator Container -->
+    <section class="calculator-containerr" id="batteryCalculator">
+        <h2>Solar Battery Calculator</h2>
+
+        <form id="batteryCalculatorForm">
             <div class="calculator-element">
-                <label class="calculator-input-label" for="state">
-                    Select State
+                <label id="energyConsumptionLabel" class="calculator-input-label" for="energyConsumption">
+                    Energy Consumption
                 </label>
-                <select id="state" required>
-                    <option value="">Select State</option>
-                    <option value="5.1">Andaman and Nicobar</option>
-                    <option value="7.3">Andhra Pradesh</option>
-                    <option value="4.9">Bihar</option>
-                    <option value="2.2">Chhattisgarh</option>
-                    <option value="2.5">Dadra and Nagar Haveli</option>
-                    <option value="2.5">Daman and Diu</option>
-                    <option value="3.7">Goa</option>
-                    <option value="6.5">Gujarat</option>
-                    <option value="5.6">Haryana</option>
-                    <option value="4">Himachal Pradesh</option>
-                    <option value="3.3">Jammu and Kashmir</option>
-                    <option value="6.2">Karnataka</option>
-                    <option value="7.5">Kerala</option>
-                    <option value="4">Lakshadweep</option>
-                    <option value="6.8">Madhya Pradesh</option>
-                    <option value="8.8">Maharashtra</option>
-                    <option value="4.1">Meghalaya</option>
-                    <option value="6.4">Delhi</option>
-                    <option value="5.3">Odisha</option>
-                    <option value="2.4">Puducherry</option>
-                    <option value="5.8">Punjab</option>
-                    <option value="5.3">Rajasthan</option>
-                    <option value="5.8">Tamil Nadu</option>
-                    <option value="5.4">Tripura</option>
-                    <option value="3.8">Uttar Pradesh</option>
-                    <option value="3.1">Uttarakhand</option>
-                    <option value="8">West Bengal</option>
+                <div class="input-group">
+                    <input id="energyConsumption" type="number" min="0" step="1" onchange="resetUI()">
+                    <select id="energyConsumptionUnit" onchange="resetUI()">
+                        <option value="whperday" selected>Wh/day</option>
+                        <option value="whpermonth">Wh/month</option>
+                        <option value="kwhperday">kWh/day</option>
+                        <option value="kwhpermonth">kWh/month</option>
+                    </select>
+                </div>
+                <div id="energyConsumptionError" class="calculator-input-error">
+                    <strong>Error:</strong> This field is required and must be greater than 0.
+                </div>
+            </div>
+
+            <div class="calculator-element">
+                <label id="batteryVoltageLabel" class="calculator-input-label" for="batteryVoltage">
+                    Battery Bank Voltage
+                </label>
+                <select id="batteryVoltage" onchange="resetUI()">
+                    <option value="12" selected>12V</option>
+                    <option value="24">24V</option>
+                    <option value="36">36V</option>
+                    <option value="48">48V</option>
                 </select>
-                <div id="stateError" class="calculator-input-error">
-                    <strong>Error:</strong> Please select a state.
+                <div id="batteryVoltageError" class="calculator-input-error">
+                    <strong>Error:</strong> Please select a battery bank voltage.
                 </div>
             </div>
-    
+
             <div class="calculator-element">
-                <label class="calculator-input-label" for="category">
-                    Select Category
+                <label id="batteryTypeLabel" class="calculator-input-label" for="batteryType">
+                    Battery Type
                 </label>
-                <select id="category" required>
-                    <option value="">Select Category</option>
-                    <option value="2">Residential</option>
-                    <option value="3">Industrial</option>
+                <select id="batteryType" onchange="resetUI()">
+                    <option value="lithium" selected>Lithium (LiFePO4)</option>
+                    <option value="lead">Lead acid (sealed, flooded, AGM, gel)</option>
                 </select>
-                <div id="categoryError" class="calculator-input-error">
-                    <strong>Error:</strong> Please select a category.
+                <div id="batteryTypeError" class="calculator-input-error">
+                    <strong>Error:</strong> Please select a battery type.
                 </div>
             </div>
-    
+
             <div class="calculator-element">
-                <label class="calculator-input-label" for="monthlyBill">
-                    Monthly Electricity Bill
+                <label id="backupDaysLabel" class="calculator-input-label" for="backupDays">
+                    Battery Backup Days
                 </label>
-                <input id="monthlyBill" type="text" placeholder="Enter monthly bill amount in INR" required>
-                <div id="monthlyBillError" class="calculator-input-error">
-                    <strong>Error:</strong> This field is required and must be a valid number.
+                <div class="calculator-input-explainer">
+                    How many days of backup power do you need during bad weather or low sun conditions?
+                </div>
+                <input id="backupDays" type="number" min="1" step="1" value="3" onchange="resetUI()">
+                <div id="backupDaysError" class="calculator-input-error">
+                    <strong>Error:</strong> This field is required and must be greater than or equal to 1.
                 </div>
             </div>
-    
+
             <div class="calculator-element">
-                <button class="calculator-button" type="submit">Calculate Solar System</button>
+                <button class="calculator-button" onclick="return calculate()" type="button">Calculate Battery
+                    Size</button>
             </div>
         </form>
-    
-        <div id="calculatorResults" class="calculator-results">
-            <div class="results-title">
-                <h3>Your Solar Solution Results</h3>
-                <p>Based on your inputs, here's what we recommend:</p>
-            </div>
-    
-            <div class="results-grid">
-                <!-- Suggested Capacity -->
-                <div class="result-card">
-                    <div class="result-card-content">
-                        <div class="result-label">Suggested Capacity (kW)</div>
-                        <div class="result-value" id="suggestedCapacity">0</div>
-                    </div>
-                    <div class="result-card-icon">
-                        <i class="fas fa-solar-panel"></i>
-                    </div>
-                </div>
-    
-                <!-- Monthly Saving kWh -->
-                <div class="result-card">
-                    <div class="result-card-content">
-                        <div class="result-label">Monthly Saving (kWh)</div>
-                        <div class="result-value" id="monthlySavingKwh">0</div>
-                    </div>
-                    <div class="result-card-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                </div>
-    
-                <!-- Monthly Saving INR -->
-                <div class="result-card">
-                    <div class="result-card-content">
-                        <div class="result-label">Monthly Saving (INR)</div>
-                        <div class="result-value" id="monthlySavingInr">₹0</div>
-                    </div>
-                    <div class="result-card-icon">
-                        <i class="fas fa-rupee-sign"></i>
-                    </div>
-                </div>
-    
-                <!-- Required Space -->
-                <div class="result-card">
-                    <div class="result-card-content">
-                        <div class="result-label">Required Space (sqft)</div>
-                        <div class="result-value" id="requiredSpace">0</div>
-                    </div>
-                    <div class="result-card-icon">
-                        <i class="fas fa-expand"></i>
-                    </div>
-                </div>
-    
-                <!-- CO2 Reduction -->
-                <div class="result-card">
-                    <div class="result-card-content">
-                        <div class="result-label">CO<sub>2</sub> Emission Reduction Per Year</div>
-                        <div class="result-value" id="co2Reduction">0 <span class="result-unit">Ton</span></div>
-                    </div>
-                    <div class="result-card-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                </div>
-    
-                <!-- CTA Card -->
-                <div class="cta-card">
-                    <h4>Ready to go solar?</h4>
-                    <p>Contact our experts for a detailed consultation tailored to your specific needs and get a personalized quote for your solar system installation.</p>
-                    <button class="cta-button" onclick="window.location.href='https://wa.me/+916380986703'">Request Free Quote</button> 
-                </div>
-            </div>
-                     
-            <div class="back-button-container">
-                <button class="back-button" onclick="backToCalculator()">
-                    <i class="fas fa-arrow-left"></i> Back to Calculator
-                </button>
-            </div>
-            <div class="disclaimer">
+
+        <div id="batteryCalculatorResults" class="calculator-results">
+            <div id="successResultsTitle" class="calculator-results-title"></div>
+            <div id="successResults" class="calculator-results-result"></div>
+            <div id="successNote" class="calculator-results-note">
                 These are estimated values. Consult with a Dream Home Solar professional for final system design.
             </div>
         </div>
-    </div>    
-</section>
+        <!-- User Information Modal -->
+        <div class="modal-overlay" id="userInfoModal">
+            <div class="user-modal">
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
 
-<!-- Battery Calculator Container -->
-<section class="calculator-containerr" id="batteryCalculator">
-    <h2>Solar Battery Calculator</h2>
-    
-    <form id="batteryCalculatorForm">
-        <div class="calculator-element">
-            <label id="energyConsumptionLabel" class="calculator-input-label" for="energyConsumption">
-                Energy Consumption
-            </label>
-            <div class="input-group">
-                <input id="energyConsumption" type="number" min="0" step="1" onchange="resetUI()">
-                <select id="energyConsumptionUnit" onchange="resetUI()">
-                    <option value="whperday" selected>Wh/day</option>
-                    <option value="whpermonth">Wh/month</option>
-                    <option value="kwhperday">kWh/day</option>
-                    <option value="kwhpermonth">kWh/month</option>
-                </select>
-            </div>
-            <div id="energyConsumptionError" class="calculator-input-error">
-                <strong>Error:</strong> This field is required and must be greater than 0.
-            </div>
-        </div>
+                <div id="modalFormContent">
+                    <div class="modal-header">
+                        <h3 class="modal-title">See Your Battery Results</h3>
+                        <p class="modal-subtitle">Please share your contact details to view your calculation</p>
+                    </div>
 
-        <div class="calculator-element">
-            <label id="batteryVoltageLabel" class="calculator-input-label" for="batteryVoltage">
-                Battery Bank Voltage
-            </label>
-            <select id="batteryVoltage" onchange="resetUI()">
-                <option value="12" selected>12V</option>
-                <option value="24">24V</option>
-                <option value="36">36V</option>
-                <option value="48">48V</option>
-            </select>
-            <div id="batteryVoltageError" class="calculator-input-error">
-                <strong>Error:</strong> Please select a battery bank voltage.
-            </div>
-        </div>
+                    <form id="userInfoForm" class="user-form">
+                        <div class="form-group" id="nameGroup">
+                            <label for="userName">Full Name</label>
+                            <input type="text" id="userName" placeholder="Enter your full name">
+                            <div class="form-error" id="nameError">Please enter your name</div>
+                        </div>
 
-        <div class="calculator-element">
-            <label id="batteryTypeLabel" class="calculator-input-label" for="batteryType">
-                Battery Type
-            </label>
-            <select id="batteryType" onchange="resetUI()">
-                <option value="lithium" selected>Lithium (LiFePO4)</option>
-                <option value="lead">Lead acid (sealed, flooded, AGM, gel)</option>
-            </select>
-            <div id="batteryTypeError" class="calculator-input-error">
-                <strong>Error:</strong> Please select a battery type.
-            </div>
-        </div>
+                        <div class="form-group" id="phoneGroup">
+                            <label for="userPhone">Phone Number</label>
+                            <input type="tel" id="userPhone" placeholder="Enter your phone number">
+                            <div class="form-error" id="phoneError">Please enter a valid phone number</div>
+                        </div>
 
-        <div class="calculator-element">
-            <label id="backupDaysLabel" class="calculator-input-label" for="backupDays">
-                Battery Backup Days
-            </label>
-            <div class="calculator-input-explainer">
-                How many days of backup power do you need during bad weather or low sun conditions?
-            </div>
-            <input id="backupDays" type="number" min="1" step="1" value="3" onchange="resetUI()">
-            <div id="backupDaysError" class="calculator-input-error">
-                <strong>Error:</strong> This field is required and must be greater than or equal to 1.
-            </div>
-        </div>
+                        <div class="form-group" id="placeGroup">
+                            <label for="userPlace">Location</label>
+                            <input type="text" id="userPlace" placeholder="Enter your city/location">
+                            <div class="form-error" id="placeError">Please enter your location</div>
+                        </div>
 
-        <div class="calculator-element">
-            <button class="calculator-button" onclick="return calculate()" type="button">Calculate Battery Size</button>
-        </div>
-    </form>
+                        <div class="form-group" id="emailGroup">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" placeholder="Enter your email address">
+                            <div class="form-error" id="emailError">Please enter a valid email</div>
+                        </div>
 
-    <div id="batteryCalculatorResults" class="calculator-results">
-        <div id="successResultsTitle" class="calculator-results-title"></div>
-        <div id="successResults" class="calculator-results-result"></div>
-        <div id="successNote" class="calculator-results-note">
-            These are estimated values. Consult with a Dream Home Solar professional for final system design.
-        </div>
-    </div>
-    <!-- User Information Modal -->
-<div class="modal-overlay" id="userInfoModal">
-    <div class="user-modal">
-        <button class="modal-close" id="modalClose">
-            <i class="fas fa-times"></i>
-        </button>
-        
-        <div id="modalFormContent">
-            <div class="modal-header">
-                <h3 class="modal-title">See Your Battery Results</h3>
-                <p class="modal-subtitle">Please share your contact details to view your calculation</p>
-            </div>
-            
-            <form id="userInfoForm" class="user-form">
-                <div class="form-group" id="nameGroup">
-                    <label for="userName">Full Name</label>
-                    <input type="text" id="userName" placeholder="Enter your full name">
-                    <div class="form-error" id="nameError">Please enter your name</div>
+                        <button type="submit" class="submit-btn">View My Results</button>
+                    </form>
+
                 </div>
-                
-                <div class="form-group" id="phoneGroup">
-                    <label for="userPhone">Phone Number</label>
-                    <input type="tel" id="userPhone" placeholder="Enter your phone number">
-                    <div class="form-error" id="phoneError">Please enter a valid phone number</div>
-                </div>
-                
-                <div class="form-group" id="placeGroup">
-                    <label for="userPlace">Location</label>
-                    <input type="text" id="userPlace" placeholder="Enter your city/location">
-                    <div class="form-error" id="placeError">Please enter your location</div>
-                </div>
-                
-                <div class="form-group" id="emailGroup">
-                    <label for="userEmail">Email</label>
-                    <input type="email" id="userEmail" placeholder="Enter your email address">
-                    <div class="form-error" id="emailError">Please enter a valid email</div>
-                </div>
-                
-                <button type="submit" class="submit-btn">View My Results</button>
-            </form>
-            
+            </div>
         </div>
-    </div>
-</div>
-</div>
-</section>
+        </div>
+    </section>
     <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
@@ -460,5 +474,7 @@
     </footer>
     <!-- Footer Section Ends  -->
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/energycalculator.js"></script>
 </body>
+
 </html>
