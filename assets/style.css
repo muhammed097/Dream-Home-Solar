@@ -475,8 +475,8 @@ nav {
 /* Our Services Ends  */
 
 Installation Starts  */
- .work-process {
-    padding: 80px 0;
+.work-process {
+    padding: 80px 0 !important;
     background-color: #fff;
 }
 

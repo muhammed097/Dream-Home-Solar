@@ -389,7 +389,9 @@
     }
 
     .services-title {
-        font-size: 2rem;
+        font-size: 16px;
+        text-align: justify;
+        line-height: 25px;
     }
 
     .service-card {
